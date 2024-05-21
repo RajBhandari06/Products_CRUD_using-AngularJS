@@ -1,0 +1,39 @@
+<div class="flex justify-content-between" >
+    <h2>products</h2>
+    <p-button label="Add product" (click)="showAddModal()" />
+</div>
+
+<p-table [value]="products" [paginator]="true" [rows]="5" >
+    <ng-template pTemplate="header">
+        <tr>
+            <th>Title</th>
+            <th>Price</th>
+            <th>Category</th>
+            <th></th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-product>
+        <tr>
+            <td>{{ product.title }}</td>
+            <td>{{ product.price }}</td>
+            <td>{{ product.category }}</td>
+            <td><button pButton icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2" (click)="showEditModal(product)" ></button>
+            <button pButton icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deleteProduct(product)" ></button></td>
+        </tr>
+    </ng-template>
+</p-table>
+
+<app-add-edit-product
+ [displayAddEditModal]="displayAddEditModal"
+ [selectedProduct]="selectedProduct"
+ (clickClose)="hideAddModal($event)"
+ (clickAddEdit)="saveUpdateProductToList($event)"  >
+</app-add-edit-product>
+
+
+<p-confirmDialog header="Delete"></p-confirmDialog>
+<p-toast position="bottom-right" />
+
+<div style="width: 600px;">
+        <canvas id="myChart"></canvas>
+</div>
